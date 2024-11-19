@@ -2,7 +2,7 @@
 function logout() {
     alert("Você foi deslogado!");
     // Aqui, você pode redirecionar para a página de login
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // Funcionalidade de adicionar novo plano
