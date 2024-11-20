@@ -1,5 +1,4 @@
 /*formulario de login*/
-
 .container {
     height: 100vh;
 }
@@ -24,40 +23,65 @@
 }
 
 .enter-text {
-    border: 1px solid #ABB3A8;
+    border: 1px solid #5a5a5a;
     height: 47px;
     padding: 0.5rem;
+    background-color: #272727;
+    color: #5a5a5a;
+}
+
+.enter-text::placeholder {
+    color: #5a5a5a;
+}
+
+.enter-text:focus {
+    border-color: #51c120; 
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(81, 194, 32, 0.4);
+    background-color: #272727;
+}
+
+.connect-check {
+    background-color: #232221;
+    border: 1px solid #5a5a5a;
 }
 
 .connect-label {
     font-size: 1rem;
+    color: #5a5a5a;
 }
 
 .forgot, .singin-link {
-    color: #1db9e0;
+    color: #ffffff;
     text-decoration: none;
 }
 
 .forgot:hover, .singin-link:hover {
-    color: #0d6efd;
+    color: #51c120;
 }
 
 .send {
     height: 47px;
-    background-color: #3f3d56;
-    color: #ffffff;
-    font-weight: 500;
+    background-color: #51c120;
+    color: #272727;
+    font-weight: 700;
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
 .send:hover {
-    background-color: #4f4d66;
+    background-color: #51c120;
+    color: #ffffff;
 }
 
 .link-retrieve {
-    color: #5A6256;
+    color: #5a5a5a;
     font-size: 1rem;
+}
+
+.span-form {
+    color: #5a5a5a;
+    margin-right: 5px;
 }
 
 .box-retrieve {
@@ -177,11 +201,11 @@ body {
     border: 1px solid #51c120;
     font-weight: 700;
     transition: background-color 0.3s ease;
-    width: auto; /* Ajustando largura para não ocupar toda a largura */
-    margin-top: 5px; /* Distância melhor entre o título e o botão */
+    width: auto;
+    margin-top: 5px; 
     margin-bottom: 20px;
     border-radius: 8px;
-    padding: 10px 30px; /* Maior padding para dar uma aparência mais equilibrada */
+    padding: 10px 30px;
 }
 
 .criar-plano-btn:hover {
@@ -189,13 +213,12 @@ body {
     color: #ffffff;
 }
 
-/* Planos Individuais */
 .plano {
     background-color: #272727;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 15px;
-    border: 1px solid #5a5a5a; /* Borda ao redor de cada plano */
+    border: 1px solid #5a5a5a; 
 }
 
 .plano h5 {
