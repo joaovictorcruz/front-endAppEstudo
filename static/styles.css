@@ -84,16 +84,18 @@
 
 /* Cor do fundo e tipografia */
 body {
-    background-color: #f4f7fc;
-    font-family: Arial, sans-serif;
+    background-color: #232221;
+    font-family: 'Montserrat', Arial, sans-serif;
 }
 
-/* Cabeçalho */
+.logo{
+    height: 300px; 
+    margin-left: 20px;
+}
+
 header {
-    background-color: #5f27cd;
-    color: white;
-    border: none; 
-    padding: 15px 0; 
+    height: 80px;
+    color: #ffffff;
 }
 
 .container-fluid {
@@ -111,10 +113,11 @@ header {
 /* Botões */
 .btn {
     transition: background-color 0.3s ease;
+    color: #ffffff;
 }
 
 .btn:hover {
-    background-color: #341f97;
+    background-color: #3e9a18;
 }
 
 /* Modal */
@@ -142,6 +145,27 @@ header {
     color: #636e72;
 }
 
+p {
+    font-size: 1rem;
+    color: #ffffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400; /* Peso regular para textos normais */
+    color: #ffffff;
+}
+
+.row {
+    margin: 0 auto;
+}
+
+.col-md-3 {
+    margin-bottom: 20px; /* Espaçamento entre Menu e Planos */
+}
+
+h4, h3, h5 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #51c120;
+    font-weight: 700; /* Uso de peso mais forte para títulos */
+}
 /* Responsividade */
 @media (max-width: 576px) {
     h2 {
@@ -152,7 +176,15 @@ header {
         font-size: 0.8rem;
     }
 
-    .col-md-3, .col-md-9 {
+    .col-md-3, .col-md-9, .col-md-9 {
         padding: 1rem;
+    }
+
+    header img {
+        height: 100px;
+    }
+
+    h4, h3, h5 {
+        font-size: 1rem;
     }
 }
