@@ -28,10 +28,12 @@
     padding: 0.5rem;
     background-color: #272727;
     color: #5a5a5a;
+    font-weight: 700;
 }
 
 .enter-text::placeholder {
     color: #5a5a5a;
+    font-weight: 700;
 }
 
 .enter-text:focus {
@@ -39,6 +41,7 @@
     outline: none; 
     box-shadow: 0 0 0 2px rgba(81, 194, 32, 0.4);
     background-color: #272727;
+    color: #5a5a5a;
 }
 
 .connect-check {
@@ -48,11 +51,13 @@
 
 .connect-label {
     font-size: 1rem;
+    font-weight: 600;
     color: #5a5a5a;
 }
 
 .forgot, .singin-link {
     color: #ffffff;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -76,12 +81,14 @@
 
 .link-retrieve {
     color: #5a5a5a;
+    font-weight: 600;
     font-size: 1rem;
 }
 
 .span-form {
     color: #5a5a5a;
     margin-right: 5px;
+    font-weight: 600;
 }
 
 .box-retrieve {
@@ -116,18 +123,22 @@ body {
     padding: 0 20px;
 }
 
-.user-info span,
-.user-info strong {
+.user-info span{
+    color: #51c120;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+#username {
     color: #51c120;
     font-weight: 700;
-    margin-right: 10px;
 }
 
 .logout-btn {
     background-color: #51c120;
     color: #232221;
     border: none;
-    font-weight: 700;
+    font-weight: 550;
     transition: background-color 0.3s ease;
 }
 
@@ -223,14 +234,14 @@ body {
 
 .plano h5 {
     color: #51c120;
-    font-weight: 700;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
 .plano p {
     font-size: 1rem;
     color: #ffffff;
-    font-weight: 400;
+    font-weight: 500;
     margin-bottom: 10px;
 }
 
