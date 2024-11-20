@@ -1,39 +1,67 @@
-// Função para simular o logout
-function logout() {
-    alert("Você foi deslogado!");
-    // Aqui, você pode redirecionar para a página de login
-    window.location.href = "index.html";
+// Obter token do localStorage
+const token = localStorage.getItem("token");
+
+// Redirecionar para login se o token não existir
+if (!token) {
+    window.location.href = "/templates/index.html";
 }
 
-// Funcionalidade de adicionar novo plano
-document.getElementById("createPlanForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+// Buscar planos ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("http://localhost:1910/api/planos", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const planosContainer = document.querySelector(".planos");
+            planosContainer.innerHTML = "<h3>Meus Planos de Estudo</h3>";
 
-    const planTitle = document.getElementById("planTitle").value;
-    const planGoals = document.getElementById("planGoals").value;
-    const planStartDate = document.getElementById("planStartDate").value;
-    const planEndDate = document.getElementById("planEndDate").value;
+            data.forEach((plano) => {
+                const planoCard = document.createElement("div");
+                planoCard.classList.add("plano");
 
-    if (planTitle && planGoals && planStartDate && planEndDate) {
-        // Adiciona o novo plano à lista (aqui pode ser feito um POST para o backend)
-        const planList = document.getElementById("planList");
-        const newPlanCard = document.createElement("div");
-        newPlanCard.classList.add("card", "mb-3");
+                planoCard.innerHTML = `
+                    <h5>${plano.plano_titulo}</h5>
+                    <p>Metas: ${plano.metas}. Data de início: ${plano.DataInicio}</p>
+                    <button class="btn detalhes-btn">Ver detalhes</button>
+                `;
 
-        newPlanCard.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">${planTitle}</h5>
-                <p class="card-text">Metas: ${planGoals}. Data de Início: ${planStartDate}</p>
-                <button class="btn btn-info btn-sm">Ver Detalhes</button>
-            </div>
-        `;
+                planosContainer.appendChild(planoCard);
+            });
+        })
+        .catch((error) => {
+            console.error("Erro ao buscar planos:", error);
+            alert("Erro ao carregar os planos. Tente novamente mais tarde.");
+        });
+});
 
-        planList.appendChild(newPlanCard);
-        alert("Plano criado com sucesso!");
-        // Fecha o modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById('addPlanModal'));
-        modal.hide();
-    } else {
-        alert("Por favor, preencha todos os campos.");
+// Criar novo plano
+document.querySelector(".criar-plano-btn").addEventListener("click", () => {
+    const titulo = prompt("Título do plano:");
+    const metas = prompt("Metas do plano:");
+    const DataInicio = prompt("Data de início (YYYY-MM-DD):");
+    const DataFim = prompt("Data de término (YYYY-MM-DD):");
+
+    if (titulo && metas && DataInicio && DataFim) {
+        fetch("http://localhost:1910/api/planos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ plano_titulo: titulo, metas, DataInicio, DataFim }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                alert("Plano criado com sucesso!");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("Erro ao criar plano:", error);
+                alert("Erro ao criar plano. Tente novamente mais tarde.");
+            });
     }
 });
