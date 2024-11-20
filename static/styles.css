@@ -1,11 +1,4 @@
 /*formulario de login*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: #3f3d56;
-}
 
 .container {
     height: 100vh;
@@ -14,17 +7,20 @@
 .form, .singin-form {
     max-width: 512px;
     width: 100%;
+    background-color: #272727;
 }
 
 .title {
     font-weight: bold;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    color: #51c120;
 }
 
 .label-text {
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    color: #ffffff;
 }
 
 .enter-text {
@@ -79,7 +75,6 @@ body {
     background-color: #232221;
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 700;
-    color: #ffffff;
 }
 
 .logo {
@@ -101,6 +96,7 @@ body {
 .user-info strong {
     color: #51c120;
     font-weight: 700;
+    margin-right: 10px;
 }
 
 .logout-btn {
