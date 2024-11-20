@@ -10,37 +10,34 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <header class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #5a5a5a;">
+        <!-- Header -->
+        <header class="header">
             <img class="logo" src="/src/tostudy.png" alt="ToStudy Logo">
-            <div class="user-info text-success">
-                <span style="color: #51c120;">Bem-vindo, <strong style="color: #51c120;" id="userName">João Victor</strong></span>
-                <button class="btn ms-3" style="background-color: #51c120; color: #232221; border: none;" onclick="logout()">Logout</button>
+            <div class="user-info">
+                <span>Bem-vindo, <strong id="userName">João Victor</strong></span>
+                <button class="btn logout-btn" onclick="logout()">Logout</button>
             </div>
         </header>
 
         <div class="row m-0 mt-4">
-            <div class="col-md-3 p-4" style="background-color: #272727; color: #ffffff; border-radius: 10px; margin-right: 20px;">
-                <h4 class="mb-4" style="color: #51c120;">Menu</h4>
-                <button class="btn btn-dark w-100 mb-3" style="background-color: #232221;">Meus Planos</button>
-                <button class="btn btn-dark w-100" style="background-color: #232221;">Adicionar Plano</button>
+            <div class="menu col-md-3">
+                <h4 class="menu-titulo">Menu</h4>
+                <button class="btn btn-dark menu-btn">Meus Planos</button>
+                <button class="btn btn-dark menu-btn">Adicionar Plano</button>
             </div>
 
-            <!-- Planos -->
-            <div class="col-md-8 p-4" style="background-color: #272727; border-radius: 10px;">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-success">Meus Planos de Estudo</h3>
-                    <button class="btn btn-success" style="background-color: #51c120; border: none;">Criar novo plano</button>
+            <div class="col-md-8 planos">
+                <h3>Meus Planos de Estudo</h3>
+                <button class="btn criar-plano-btn">Criar novo plano</button>
+                <div class="plano">
+                    <h5>Plano de Estudo 1</h5>
+                    <p>Metas: Estudar Matemática e Física. Data de início: 01/12/24</p>
+                    <button class="btn detalhes-btn">Ver detalhes</button>
                 </div>
-                <!-- Planos -->
-                <div class="mb-3 p-3" style="background-color: #232221; border-radius: 10px;">
-                    <h5 class="text-success">Plano de Estudo 1</h5>
-                    <p class="text-white">Metas: Estudar Matemática e Física. Data de início: 01/12/24</p>
-                    <button class="btn btn-success btn-sm" style="background-color: #51c120; border: none;">Ver detalhes</button>
-                </div>
-                <div class="mb-3 p-3" style="background-color: #232221; border-radius: 10px;">
-                    <h5 class="text-success">Plano de Estudo 2</h5>
-                    <p class="text-white">Metas: Estudar Química e Biologia. Data de início: 05/12/24</p>
-                    <button class="btn btn-success btn-sm" style="background-color: #51c120; border: none;">Ver detalhes</button>
+                <div class="plano">
+                    <h5>Plano de Estudo 2</h5>
+                    <p>Metas: Estudar Química e Biologia. Data de início: 05/12/24</p>
+                    <button class="btn detalhes-btn">Ver detalhes</button>
                 </div>
             </div>
         </div>

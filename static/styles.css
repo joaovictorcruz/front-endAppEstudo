@@ -75,116 +75,167 @@
 
 /*estilização home page*/
 
-/* Resetando margens e preenchimentos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Cor do fundo e tipografia */
 body {
     background-color: #232221;
     font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    color: #ffffff;
 }
 
-.logo{
-    height: 300px; 
+.logo {
+    height: 290px;
     margin-left: 20px;
 }
 
-header {
+.header {
     height: 80px;
+    background-color: #5a5a5a;
     color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
 
-.container-fluid {
-    padding-left: 0;
-    padding-right: 0;
+.user-info span,
+.user-info strong {
+    color: #51c120;
+    font-weight: 700;
 }
 
-/* Sidebar */
-.card {
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto; /* Centraliza em dispositivos menores */
-}
-
-/* Botões */
-.btn {
+.logout-btn {
+    background-color: #51c120;
+    color: #232221;
+    border: none;
+    font-weight: 700;
     transition: background-color 0.3s ease;
-    color: #ffffff;
 }
 
-.btn:hover {
+.logout-btn:hover {
     background-color: #3e9a18;
 }
 
-/* Modal */
-.modal-content {
+.menu {
+    color: #51c120;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 60px;
+    margin-top: 16px; 
+    background-color: #272727;
+    width: 300px; 
+    display: inline-block; 
+    font-weight: 700;
+    border: 1px solid #5a5a5a; 
+}
+
+.menu-titulo {
+    color: #51c120;
+    margin-bottom: 10px; 
+    font-weight: 700;   
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.menu-btn {
+    background-color: #272727;
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #ffffff;
     border-radius: 8px;
+    border: 1px solid #5a5a5a; 
+    text-align: left; /* Alinhamento do texto dos botões à esquerda */
+    padding-left: 15px; /* Alinhamento à esquerda */
 }
 
-.modal-header {
-    background-color: #5f27cd;
-    color: white;
+.menu-btn:hover {
+    background-color: #3e9a18;
 }
 
-/* Cards de Planos */
-.card-body {
-    background-color: #fff;
+/* Layout de flexbox para garantir que o menu e os planos fiquem lado a lado */
+.row {
+    display: flex;
+    align-items: flex-start;
+}
+
+
+/* Ajustes na div de planos */
+.planos {
+    background-color: #272727;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 16px;
+    border: 1px solid #5a5a5a; /* Borda na área de planos */
+
+}
+
+.planos h3 {
+    color: #51c120;
+    font-weight: 700;
+    margin-bottom: 15px; /* Ajustando o espaço abaixo do título */
+}
+
+.criar-plano-btn {
+    background-color: #5a5a5a;
+    color: #51c120;
+    border: 1px solid #51c120;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    width: auto; /* Ajustando largura para não ocupar toda a largura */
+    margin-top: 5px; /* Distância melhor entre o título e o botão */
+    margin-bottom: 20px;
     border-radius: 8px;
+    padding: 10px 30px; /* Maior padding para dar uma aparência mais equilibrada */
 }
 
-.card-title {
-    font-weight: bold;
-    font-size: 1.2rem;
+.criar-plano-btn:hover {
+    background-color: #3e9a18;
+    color: #ffffff;
 }
 
-.card-text {
-    color: #636e72;
+/* Planos Individuais */
+.plano {
+    background-color: #272727;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #5a5a5a; /* Borda ao redor de cada plano */
 }
 
-p {
+.plano h5 {
+    color: #51c120;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.plano p {
     font-size: 1rem;
     color: #ffffff;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-weight: 400; /* Peso regular para textos normais */
-    color: #ffffff;
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
-.row {
-    margin: 0 auto;
+.detalhes-btn {
+    background-color: #51c120;
+    border: none;
+    font-weight: 700;
 }
 
-.col-md-3 {
-    margin-bottom: 20px; /* Espaçamento entre Menu e Planos */
+.detalhes-btn:hover {
+    background-color: #3e9a18;
 }
 
-h4, h3, h5 {
-    font-family: 'Montserrat', Arial, sans-serif;
-    color: #51c120;
-    font-weight: 700; /* Uso de peso mais forte para títulos */
-}
 /* Responsividade */
 @media (max-width: 576px) {
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .user-info {
-        font-size: 0.8rem;
-    }
-
-    .col-md-3, .col-md-9, .col-md-9 {
-        padding: 1rem;
-    }
-
-    header img {
+    .header img {
         height: 100px;
     }
 
-    h4, h3, h5 {
+    .menu, .planos {
+        padding: 10px;
+    }
+
+    h3, h4, h5 {
         font-size: 1rem;
     }
 }
