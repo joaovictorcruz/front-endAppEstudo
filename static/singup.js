@@ -23,7 +23,7 @@ document.getElementById("signupForm").addEventListener("submit", function(event)
     .then(response => response.json())
     .then(data => {
         if (data.token) {
-            localStorage.setItem("token", data.token);
+            localStorage.setItem("token", data.token)
             window.location.href = "../templates/home.html";
         } else {
             errorMessage.textContent = data.erro || "Erro desconhecido.";

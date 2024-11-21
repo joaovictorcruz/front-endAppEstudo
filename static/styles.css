@@ -255,6 +255,17 @@ body {
     background-color: #3e9a18;
 }
 
+.modal-header {
+    background-color: #272727;
+    color: #51c120;
+}
+
+.modal-content {
+    background-color: #272727;
+    border: 1px solid #5a5a5a;
+    border-radius: 10px;
+}
+
 /* Responsividade */
 @media (max-width: 576px) {
     .header img {
