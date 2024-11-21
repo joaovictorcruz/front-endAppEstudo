@@ -1,51 +1,70 @@
 // Obter token do localStorage
 const token = localStorage.getItem("token");
-console.log(token)
-// Redirecionar para login se o token não existir
 if (!token) {
     window.location.href = "./index.html";
 }
 
+// Função para renderizar o botão "Criar novo plano"
+const renderizarBotaoCriarPlano = () => {
+    const planosContainer = document.querySelector(".planos");
+
+    // Criação do botão "Criar novo plano"
+    const botaoCriarPlano = document.createElement("button");
+    botaoCriarPlano.classList.add("btn", "criar-plano-btn");
+    botaoCriarPlano.setAttribute("data-bs-toggle", "modal");
+    botaoCriarPlano.setAttribute("data-bs-target", "#addPlanModal");
+    botaoCriarPlano.textContent = "Criar novo plano";
+
+    planosContainer.appendChild(botaoCriarPlano);
+};
+
+// Função para renderizar um plano no DOM
+const renderizarPlano = (plano) => {
+    const planosContainer = document.querySelector(".planos");
+
+    // Criação do elemento do plano
+    const planoCard = document.createElement("div");
+    planoCard.classList.add("plano");
+    planoCard.innerHTML = `
+        <h5>${plano.plano_titulo}</h5>
+        <p>Metas: ${plano.metas}</p>
+        <button id="${plano.id}" class="btn detalhes-btn">Ver detalhes</button>
+    `;
+
+    planosContainer.appendChild(planoCard);
+};
+
 // Buscar planos ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("http://localhost:1910/api/planos/buscarplano", {
+    fetch("http://localhost:1910/api/planos/buscarplanos", {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
         },
     })
-    
         .then((response) => response.json())
         .then((data) => {
             const planosContainer = document.querySelector(".planos");
-            planosContainer.innerHTML = "<h3>Meus Planos de Estudo</h3>";
+            planosContainer.innerHTML = "<h3>Meus Planos de Estudo</h3>"; // Limpa a área de planos
 
-            data.forEach((plano) => {
-                const planoCard = document.createElement("div");
-                planoCard.classList.add("plano");
+            // Adiciona o botão "Criar novo plano"
+            renderizarBotaoCriarPlano();
 
-                planoCard.innerHTML = `
-                    <h5>${plano.plano_titulo}</h5>
-                    <p>Metas: ${plano.metas}. Data de início: ${plano.DataInicio}</p>
-                    <button id="${plano.id}" class="btn detalhes-btn">Ver detalhes</button>
-                `;
-
-                planosContainer.appendChild(planoCard);
-            });
+            // Renderiza cada plano no DOM
+            data.forEach((plano) => renderizarPlano(plano));
         })
         .catch((error) => {
             console.error("Erro ao buscar planos:", error);
-            console.log("Erro ao carregar os planos. Tente novamente mais tarde.");
+            alert("Erro ao carregar os planos. Tente novamente mais tarde.");
         });
 });
 
+// Criar novo plano
 document.getElementById("createPlanForm").addEventListener("submit", (event) => {
     event.preventDefault();
 
     const titulo = document.getElementById("planTitle").value;
     const metas = document.getElementById("planGoals").value;
-    const DataInicio = document.getElementById("planStartDate").value;
-    const DataFim = document.getElementById("planEndDate").value;
 
     fetch("http://localhost:1910/api/planos/novoplano", {
         method: "POST",
@@ -53,65 +72,26 @@ document.getElementById("createPlanForm").addEventListener("submit", (event) => 
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ plano_titulo: titulo, metas, DataInicio, DataFim }),
+        body: JSON.stringify({ plano_titulo: titulo, metas }),
     })
         .then((response) => response.json())
-        .then(() => {
+        .then((novoPlano) => {
+            // Adiciona o novo plano ao DOM sem recarregar a página
+            renderizarPlano({
+                plano_titulo: novoPlano.plano_titulo || titulo, // Usa o valor retornado ou o valor enviado
+                metas: novoPlano.metas || metas, // Usa o valor retornado ou o valor enviado
+                id: novoPlano.id, // Garante que o ID seja exibido corretamente
+            });
+
+            // Fecha o modal e limpa o formulário
+            const modal = bootstrap.Modal.getInstance(document.getElementById("addPlanModal"));
+            modal.hide();
+            document.getElementById("createPlanForm").reset();
+
             alert("Plano criado com sucesso!");
-            window.location.reload();
         })
         .catch((error) => {
             console.error("Erro ao criar plano:", error);
             alert("Erro ao criar plano. Tente novamente mais tarde.");
         });
-        
 });
-
-document.getElementById("editPlanForm").addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const planoId = event.target.id ; // Obtenha o ID do plano (armazenado em algum lugar)
-    const titulo = document.getElementById("editPlanTitle").value;
-    const metas = document.getElementById("editPlanGoals").value;
-    const DataInicio = document.getElementById("editPlanStartDate").value;
-    const DataFim = document.getElementById("editPlanEndDate").value;
-
-    fetch("http://localhost:1910/api/planos/editarplano", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ planoId, plano_titulo: titulo, metas, DataInicio, DataFim }),
-    })
-        .then(() => {
-            alert("Plano atualizado com sucesso!");
-            window.location.reload();
-        })
-        .catch((error) => {
-            console.error("Erro ao editar plano:", error);
-        });
-});
-
-document.addEventListener("click", (event) => {
-    if (event.target.classList.contains("detalhes-btn")) {
-        const planoId = event.target.dataset.id;
-
-        fetch("http://localhost:1910/api/planos/excluirplano", {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ planoId }),
-        })
-            .then(() => {
-                alert("Plano deletado com sucesso!");
-                window.location.reload();
-            })
-            .catch((error) => {
-                console.error("Erro ao excluir plano:", error);
-            });
-    }
-});
-
