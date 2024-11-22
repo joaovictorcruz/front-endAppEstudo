@@ -60,6 +60,37 @@
         </div>        
     </div>
 
+<!-- Modal para Editar Tarefa -->
+<div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTaskModalLabel">Editar Tarefa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editTaskForm">
+                    <input type="hidden" id="editTaskId">
+                    <div class="mb-3">
+                        <label for="editTaskTitle" class="form-label">Título da Tarefa</label>
+                        <input type="text" class="form-control" id="editTaskTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTaskDescription" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="editTaskDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTaskDate" class="form-label">Data de Vencimento</label>
+                        <input type="date" class="form-control" id="editTaskDate" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Editar Tarefa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/tasks.js"></script>
 </body>
