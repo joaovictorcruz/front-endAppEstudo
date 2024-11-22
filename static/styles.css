@@ -411,7 +411,7 @@ body {
     margin: 5px;
     border-radius: 8px;
     cursor: pointer;
-    color: #ffffff;
+    color: #272727;
 }
 
 .task-item .editar-btn:hover,
@@ -443,7 +443,7 @@ body {
     margin: 5px; /* Espaçamento externo */
     border-radius: 8px; /* Bordas arredondadas */
     cursor: pointer;
-    color: #ffffff; /* Cor do texto */
+    color: #272727; /* Cor do texto */
     font-size: 16px; /* Tamanho do texto */
 }
 
@@ -451,7 +451,7 @@ body {
 .finalizar-btn:hover,
 .editar-btn:hover {
     background-color: #3e9a18; /* Verde mais escuro */
-    color: #ffffff;
+    color: #272727;
 }
 
 /* Hover para o botão excluir */
