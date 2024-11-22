@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
             console.error("Erro ao buscar planos:", error);
-            alert("Erro ao carregar os planos. Tente novamente mais tarde.");
+            console.log("Erro ao carregar os planos. Tente novamente mais tarde.");
         });
 });
 

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
             console.error("Erro ao carregar tarefas:", error);
-            alert("Erro ao carregar tarefas. Tente novamente mais tarde.");
+            console.log("Erro ao carregar tarefas. Tente novamente mais tarde.");
         });
 });
 
