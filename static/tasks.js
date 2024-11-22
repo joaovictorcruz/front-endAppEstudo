@@ -8,18 +8,31 @@ if (!token) {
 const urlParams = new URLSearchParams(window.location.search);
 const planoId = urlParams.get("planoId");
 
+// Função para formatar a data e remover o sufixo desnecessário
+const formatarData = (data) => {
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    return new Date(data).toLocaleDateString("pt-BR", options); // DD/MM/AAAA
+};
+
 // Renderizar tarefas no DOM
 const renderizarTarefa = (tarefa) => {
     const tarefasContainer = document.getElementById("tasksContainer");
 
     const tarefaCard = document.createElement("div");
     tarefaCard.classList.add("task-item");
+
+    const statusStyle = tarefa.status === "Concluída" ? "color:#51c120;font-weight:700;" : "color:red;";
+
     tarefaCard.innerHTML = `
-        <h5>${tarefa.tarefa_titulo}</h5>
+        <h5>
+            ${tarefa.tarefa_titulo}
+            <span style="${statusStyle}">(${tarefa.status})</span>
+        </h5>
         <p>${tarefa.desc_conteudo}</p>
-        <p>Data de Vencimento: ${tarefa.data_vencimento}</p>
+        <p>Data de Vencimento: ${formatarData(tarefa.data_vencimento)}</p>
+        <button class="btn finalizar-btn" data-id="${tarefa.id}">Finalizar</button>
         <button class="btn editar-btn" data-id="${tarefa.id}">Editar</button>
-        <button class="btn excluir-btn" data-id="${tarefa.id}">Excluir</button>
+        <button class="btn excluir-btn btn-danger" data-id="${tarefa.id}">Excluir</button>
     `;
 
     tarefasContainer.appendChild(tarefaCard);
@@ -188,4 +201,33 @@ document.getElementById("editTaskForm").addEventListener("submit", (event) => {
             console.error("Erro ao editar tarefa:", error);
             alert("Erro ao editar tarefa. Tente novamente mais tarde.");
         });
+});
+
+// Função para adicionar evento de finalizar tarefas
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("finalizar-btn")) {
+        const tarefaId = event.target.dataset.id;
+
+        fetch(`http://localhost:1910/api/tasks/finalizar`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ tarefaId }), // Passando tarefaId no corpo da requisição
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.message === "Tarefa finalizada com sucesso!") {
+                    alert(data.message);
+                    window.location.reload(); // Recarrega as tarefas atualizadas
+                } else {
+                    alert("Erro ao finalizar a tarefa.");
+                }
+            })
+            .catch((error) => {
+                console.error("Erro ao finalizar a tarefa:", error);
+                alert("Erro ao finalizar a tarefa. Tente novamente mais tarde.");
+            });
+    }
 });

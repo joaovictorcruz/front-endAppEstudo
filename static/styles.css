@@ -243,6 +243,9 @@ body {
     color: #ffffff;
     font-weight: 500;
     margin-bottom: 10px;
+    word-wrap: break-word; /* Permite quebra de linha em palavras longas */
+    word-break: break-word; /* Força a quebra se necessário */
+    white-space: normal; /* Permite saltar para a linha de baixo */ 
 }
 
 .detalhes-btn {
@@ -307,7 +310,7 @@ body {
 }
 
 /* Botão "Criar Plano" */
-.modal-body .btn.send {
+.modal-body .btn {
     background-color: #51c120;
     color: #272727;
     font-weight: 700;
@@ -317,12 +320,14 @@ body {
 }
 
 /* Hover no botão "Criar Plano" */
-.modal-body .btn.send:hover {
+.modal-body .btn:hover {
     background-color: #3e9a18;
     color: #ffffff;
 }
 
 /* Container geral para centralizar o conteúdo */
+/* Div "Minhas Tarefas" */
+
 .tasks-container {
     display: flex;
     flex-direction: column;
@@ -334,6 +339,7 @@ body {
     min-height: 100vh;
     margin-top: 20px; /* Define um espaço entre a header e o conteúdo */
 }
+
 /* Títulos e subtítulos */
 .tasks-container h1,
 .tasks-container h3 {
@@ -389,11 +395,15 @@ body {
 .task-item p {
     color: #ffffff;
     font-weight: 500;
+    word-wrap: break-word; /* Permite quebra de linha em palavras longas */
+    word-break: break-word; /* Força a quebra se necessário */
+    white-space: normal; /* Permite saltar para a linha de baixo */ 
 }
 
 /* Botões de editar e excluir */
 .task-item .editar-btn,
-.task-item .excluir-btn {
+.task-item .excluir-btn
+.task-item .finalizar-btn {
     background-color: #51c120;
     border: none;
     font-weight: 700;
@@ -405,7 +415,8 @@ body {
 }
 
 .task-item .editar-btn:hover,
-.task-item .excluir-btn:hover {
+.task-item .excluir-btn:hover
+.task-item .finalizar-btn:hover {
     background-color: #3e9a18;
 }
 
@@ -420,6 +431,36 @@ body {
     border: 1px solid #5a5a5a;
     border-radius: 10px;
 }
+
+/* Estilização de botões */
+.finalizar-btn,
+.editar-btn,
+.excluir-btn {
+    background-color: #51c120; /* Cor padrão */
+    border: none;
+    font-weight: 700;
+    padding: 5px 15px; /* Espaçamento interno */
+    margin: 5px; /* Espaçamento externo */
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer;
+    color: #ffffff; /* Cor do texto */
+    font-size: 16px; /* Tamanho do texto */
+}
+
+/* Hover para os botões de editar e finalizar */
+.finalizar-btn:hover,
+.editar-btn:hover {
+    background-color: #3e9a18; /* Verde mais escuro */
+    color: #ffffff;
+}
+
+/* Hover para o botão excluir */
+.excluir-btn:hover {
+    background-color: #d32f2f; /* Vermelho */
+}
+
+
+
 /* Responsividade */
 @media (max-width: 576px) {
     .header img {
