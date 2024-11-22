@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas ToStudy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <header class="header">
+            <img class="logo" src="/src/tostudy.png" alt="ToStudy Logo">
+            <div class="user-info">
+                <span>Bem-vindo, <strong id="userName">João Victor</strong></span>
+                <button class="btn logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="tasks-container">
+            <h1>Tarefas</h1>
+            <button class="btn criar-tarefa-btn" data-bs-toggle="modal" data-bs-target="#addTaskModal">Criar Tarefa</button>
+        
+            <div class="minhas-tarefas">
+                <h3>Minhas Tarefas</h3>
+                <div id="tasksContainer">
+                    <!-- As tarefas serão renderizadas aqui -->
+                </div>
+            </div>
+        
+            <!-- Modal para Criar Tarefa -->
+            <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addTaskModalLabel">Criar Nova Tarefa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="createTaskForm">
+                                <div class="mb-3">
+                                    <label for="taskTitle" class="form-label">Título da Tarefa</label>
+                                    <input type="text" class="form-control" id="taskTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskDescription" class="form-label">Descrição</label>
+                                    <textarea class="form-control" id="taskDescription" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="taskDate" class="form-label">Data de Vencimento</label>
+                                    <input type="date" class="form-control" id="taskDate" required>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100">Criar Tarefa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/tasks.js"></script>
+</body>
+</html>

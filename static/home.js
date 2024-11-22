@@ -4,20 +4,6 @@ if (!token) {
     window.location.href = "./index.html";
 }
 
-// Função para renderizar o botão "Criar novo plano"
-const renderizarBotaoCriarPlano = () => {
-    const planosContainer = document.querySelector(".planos");
-
-    // Criação do botão "Criar novo plano"
-    const botaoCriarPlano = document.createElement("button");
-    botaoCriarPlano.classList.add("btn", "criar-plano-btn");
-    botaoCriarPlano.setAttribute("data-bs-toggle", "modal");
-    botaoCriarPlano.setAttribute("data-bs-target", "#addPlanModal");
-    botaoCriarPlano.textContent = "Criar novo plano";
-
-    planosContainer.appendChild(botaoCriarPlano);
-};
-
 // Função para renderizar um plano no DOM
 const renderizarPlano = (plano) => {
     const planosContainer = document.querySelector(".planos");
@@ -28,7 +14,7 @@ const renderizarPlano = (plano) => {
     planoCard.innerHTML = `
         <h5>${plano.plano_titulo}</h5>
         <p>Metas: ${plano.metas}</p>
-        <button id="${plano.id}" class="btn detalhes-btn">Ver detalhes</button>
+        <button class="btn detalhes-btn" data-id="${plano.id}">Ver detalhes</button>
     `;
 
     planosContainer.appendChild(planoCard);
@@ -48,7 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
             planosContainer.innerHTML = "<h3>Meus Planos de Estudo</h3>"; // Limpa a área de planos
 
             // Adiciona o botão "Criar novo plano"
-            renderizarBotaoCriarPlano();
+            const botaoCriarPlano = document.createElement("button");
+            botaoCriarPlano.classList.add("btn", "criar-plano-btn");
+            botaoCriarPlano.setAttribute("data-bs-toggle", "modal");
+            botaoCriarPlano.setAttribute("data-bs-target", "#addPlanModal");
+            botaoCriarPlano.textContent = "Criar novo plano";
+            planosContainer.appendChild(botaoCriarPlano);
 
             // Renderiza cada plano no DOM
             data.forEach((plano) => renderizarPlano(plano));
@@ -77,11 +68,7 @@ document.getElementById("createPlanForm").addEventListener("submit", (event) => 
         .then((response) => response.json())
         .then((novoPlano) => {
             // Adiciona o novo plano ao DOM sem recarregar a página
-            renderizarPlano({
-                plano_titulo: novoPlano.plano_titulo || titulo, // Usa o valor retornado ou o valor enviado
-                metas: novoPlano.metas || metas, // Usa o valor retornado ou o valor enviado
-                id: novoPlano.id, // Garante que o ID seja exibido corretamente
-            });
+            renderizarPlano(novoPlano);
 
             // Fecha o modal e limpa o formulário
             const modal = bootstrap.Modal.getInstance(document.getElementById("addPlanModal"));
@@ -94,4 +81,12 @@ document.getElementById("createPlanForm").addEventListener("submit", (event) => 
             console.error("Erro ao criar plano:", error);
             alert("Erro ao criar plano. Tente novamente mais tarde.");
         });
+});
+
+// Redirecionar para tarefas ao clicar em "Ver detalhes"
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("detalhes-btn")) {
+        const planoId = event.target.dataset.id;
+        window.location.href = `/templates/tasks.html?planoId=${planoId}`;
+    }
 });

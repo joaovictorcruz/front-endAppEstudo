@@ -255,17 +255,171 @@ body {
     background-color: #3e9a18;
 }
 
+/* Modal */
 .modal-header {
     background-color: #272727;
     color: #51c120;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: none;
 }
 
 .modal-content {
     background-color: #272727;
-    border: 1px solid #5a5a5a;
+    border: 1px solid #5a5a5a; /* Borda cinza escura */
     border-radius: 10px;
 }
 
+/* Título do modal */
+.modal-title {
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+/* Labels */
+.modal-body .form-label {
+    color: #51c120;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Inputs e textarea */
+.modal-body input,
+.modal-body textarea {
+    background-color: #272727;
+    color: #5a5a5a; /* Cor do texto */
+    border: 1px solid #5a5a5a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Placeholder nos inputs */
+.modal-body input::placeholder,
+.modal-body textarea::placeholder {
+    color: #5a5a5a;
+    font-weight: 700;
+}
+
+/* Estado de foco nos inputs */
+.modal-body input:focus,
+.modal-body textarea:focus {
+    border-color: #51c120;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 194, 32, 0.4);
+}
+
+/* Botão "Criar Plano" */
+.modal-body .btn.send {
+    background-color: #51c120;
+    color: #272727;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    border: none; /* Remove qualquer borda visível */
+    margin-bottom: 0; /* Remove margens extras */
+}
+
+/* Hover no botão "Criar Plano" */
+.modal-body .btn.send:hover {
+    background-color: #3e9a18;
+    color: #ffffff;
+}
+
+/* Container geral para centralizar o conteúdo */
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Muda de 'center' para 'flex-start' */
+    padding: 20px;
+    gap: 20px;
+    background-color: #232221; /* Cor de fundo geral */
+    min-height: 100vh;
+    margin-top: 20px; /* Define um espaço entre a header e o conteúdo */
+}
+/* Títulos e subtítulos */
+.tasks-container h1,
+.tasks-container h3 {
+    color: #51c120;
+    text-align: center;
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Botão "Criar Tarefa" */
+.tasks-container .criar-tarefa-btn {
+    background-color: #5a5a5a;
+    color: #51c120;
+    border: 1px solid #51c120;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    padding: 10px 30px;
+    border-radius: 8px;
+}
+
+.tasks-container .criar-tarefa-btn:hover {
+    background-color: #3e9a18;
+    color: #ffffff;
+}
+
+/* Div "Minhas Tarefas" */
+.minhas-tarefas {
+    background-color: #272727;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #5a5a5a;
+    width: 100%;
+    max-width: 700px; /* Para centralizar melhor o layout */
+}
+
+/* Cada tarefa exibida */
+.task-item {
+    background-color: #272727;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #5a5a5a;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Títulos e descrições das tarefas */
+.task-item h5 {
+    color: #51c120;
+    font-weight: 600;
+}
+
+.task-item p {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Botões de editar e excluir */
+.task-item .editar-btn,
+.task-item .excluir-btn {
+    background-color: #51c120;
+    border: none;
+    font-weight: 700;
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.task-item .editar-btn:hover,
+.task-item .excluir-btn:hover {
+    background-color: #3e9a18;
+}
+
+/* Modal */
+#addTaskModal .modal-header {
+    background-color: #272727;
+    color: #51c120;
+}
+
+#addTaskModal .modal-content {
+    background-color: #272727;
+    border: 1px solid #5a5a5a;
+    border-radius: 10px;
+}
 /* Responsividade */
 @media (max-width: 576px) {
     .header img {
