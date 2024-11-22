@@ -116,14 +116,9 @@ document.getElementById("createTaskForm").addEventListener("submit", (event) => 
         }),
     })
         .then((response) => response.json())
-        .then((novaTarefa) => {
-            renderizarTarefa(novaTarefa);
-            document.getElementById("createTaskForm").reset();
-
-            const modal = bootstrap.Modal.getInstance(document.getElementById("addTaskModal"));
-            modal.hide();
-
-            alert("Tarefa criada com sucesso!");
+        .then(() => {
+            // Recarrega a página para garantir que as tarefas apareçam corretamente
+            window.location.reload(); 
         })
         .catch((error) => {
             console.error("Erro ao criar tarefa:", error);
